@@ -6,7 +6,6 @@ import Home from './containers/Home';
 class App extends Component {
 
   state = {
-    songs: [],
     user: {}
   }
 
