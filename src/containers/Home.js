@@ -9,9 +9,9 @@ class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            mySongs: [],
             allSongs: [],
-            randomSong: []
+            randomSong: [],
+            likedSongs: []
         }
     }
 
@@ -23,6 +23,7 @@ class Home extends Component {
 
     componentDidMount() {
         this.getAllSongs()
+        this.setState({ likedSongs: this.props.user.songs })
     }
 
     displayRandomSongs = () => {
@@ -44,40 +45,31 @@ class Home extends Component {
             })
         })
         .then(res => res.json())
-        .then(() => {
-            const mySongs = [...this.state.mySongs, this.state.randomSong]
-            this.setState({mySongs})
-        })
+        .then(this.setState({likedSongs: [...this.state.likedSongs, this.state.randomSong]}))
     }
  
     render() {
-        if (this.props.user && this.props.user.id) {
-            return (
-                <header>
-                    <Router>
-                        <ul>
-                            <li>
-                                <Link to="/">Home</Link>
-                            </li>
-                            <li>
-                                <Link to="/my-songs">My Songs</Link>
-                            </li>
-                            <li>
-                                <Link to="/search">Artist Search</Link>
-                            </li>
-                        </ul>
-                        <Route path="/" exact component={Home} />
-                        <Route path="/my-songs" exact render={props => <MySongs {...props} songs={this.state.mySongs} />} />
-                        <Route path="/search" exact component={Search} />
-                    </Router>
-                    <RandomSong randomSong={this.state.randomSong} handleOnClick={this.displayRandomSongs} likeSong={this.likeSong}/>
-                </header> 
-
-            )
-        } else {
-           return null
-        }  
-
+        return (
+            <header>
+                <Router>
+                    <ul>
+                        <li>
+                            <Link to="/">Home</Link>
+                        </li>
+                        <li>
+                            <Link to="/my-songs">My Songs</Link>
+                        </li>
+                        <li>
+                            <Link to="/search">Artist Search</Link>
+                        </li>
+                    </ul>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/my-songs" exact render={props => <MySongs {...props} songs={this.state.likedSongs} />} />
+                    <Route path="/search" exact component={Search} />
+                </Router>
+                <RandomSong randomSong={this.state.randomSong} handleOnClick={this.displayRandomSongs} likeSong={this.likeSong}/>
+            </header> 
+        )
     }
 }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Welcome from './components/Welcome';
 import Home from './containers/Home';
+import { api } from './services/api';
 
 class App extends Component {
 
@@ -11,16 +12,18 @@ class App extends Component {
 
   login = user => {
     this.setState({user: user})
-    console.log(this.state.user)
   }
 
   render() {
-    return (
-      <div>
+    if (this.state.user.id) {
+      return (
         <Home user={this.state.user} />
-        <Welcome login={this.login} user={this.state.user}/>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <Welcome login={this.login}/>
+      );
+    }
   }
 }
 
