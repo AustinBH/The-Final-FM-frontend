@@ -6,7 +6,7 @@ import { api } from './services/api';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import MySongs from './components/MySongs';
 import Search from './components/Search';
-import SongInfo from './components/SongInfo'
+// import SongInfo from './components/SongInfo'
 
 class App extends Component {
 
@@ -45,11 +45,20 @@ class App extends Component {
     })
   }
   songInfo = (song) => {
-    api.songs.songEventInfo(song).then(json => {
-      const songInfo = [song, json]
-      console.log(songInfo)
-      this.setState({songInfo}) 
-    })
+    if (this.state.songInfo[0] && this.state.songInfo[0].title === song.title) {
+       this.setState({ songInfo: [] })
+    } else {
+      const message = { message: `${song.artist.name} has no upcoming events` }
+      api.songs.songEventInfo(song).then(json => {
+        if (json.message || json.status === 500) {
+          this.setState({ songInfo: [song, [message]]})
+        }
+        else {
+          const songInfo = [song, json]
+          this.setState({ songInfo })
+        }
+      })
+    }
   }
 
   render() {
@@ -67,11 +76,10 @@ class App extends Component {
               <Link to="/search">Song Search</Link>
             </li>
           </ul>
-          <Route path="/search" exact render={props => <Search {...props} songs={this.state.allSongs} />} />
-          <Route path="/my-songs" exact render={props => <MySongs {...props} songs={this.state.songs} songInfo={this.songInfo} deleteSong={this.deleteSong} />} />
+          <Route path="/search" exact render={props => <Search {...props} songs={this.state.allSongs}/>} />
+          <Route path="/my-songs" exact render={props => <MySongs {...props} songs={this.state.songs} songInfo={this.songInfo} displaySongInfo={this.state.songInfo} deleteSong={this.deleteSong} />} />
         </Router>
         <Home user={this.state.user} likeSong={this.likeSong} allSongs={this.state.allSongs} />
-        <SongInfo songInfo={this.state.songInfo} />
       </div>
     } else {
       return <Welcome login={this.login}/>

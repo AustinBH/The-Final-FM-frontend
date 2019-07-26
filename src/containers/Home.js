@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RandomSong from '../components/RandomSong';
-import { api } from '../services/api';
+// import { api } from '../services/api';
 
 class Home extends Component {
 

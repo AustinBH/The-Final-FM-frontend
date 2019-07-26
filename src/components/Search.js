@@ -18,7 +18,11 @@ class Search extends Component {
         const filteredSongs = this.props.songs.filter(song => {
             return song.title.toLowerCase().includes(this.state.input.toLowerCase())
         })
-        this.setState({filteredSongs})
+        if (filteredSongs.length === 0){
+            this.setState({filteredSongs: [{title: `There are no songs with ${this.state.input} in the title`, id: 'yeet'}]})
+        } else {
+            this.setState({ filteredSongs })
+        }
     }
 
     render() {
@@ -32,6 +36,7 @@ class Search extends Component {
                 <ul>{this.state.filteredSongs.map(song => {
                     return <li key={song.id}>{song.title}</li>
                 })}</ul>
+              
             </div>
         )
     }

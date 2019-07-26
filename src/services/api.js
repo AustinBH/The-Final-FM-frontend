@@ -46,7 +46,6 @@ const deleteSong = (song, user) => {
     
 }
 const songEventInfo = (song) => {
-    console.log(song)
     return fetch(`http://localhost:3000/api/v1/events-by-artist?artist_name=${song.artist.name}`)
     .then(res => res.json())
 }
