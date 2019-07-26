@@ -6,13 +6,15 @@ import { api } from './services/api';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import MySongs from './components/MySongs';
 import Search from './components/Search';
+import SongInfo from './components/SongInfo'
 
 class App extends Component {
 
   state = {
     user: {},
     songs: [],
-    allSongs: []
+    allSongs: [],
+    songInfo: []
   }
 
   login = user => {
@@ -34,6 +36,21 @@ class App extends Component {
     })
     .then(this.setState({ songs: [...this.state.songs, song] }))
   }
+  deleteSong = (song) => {
+    api.songs.deleteSong(song, this.state.user).then(json => {
+      const songs = this.state.songs.filter(singleSong => singleSong.id !== song.id)
+      this.setState({
+        songs
+      })
+    })
+  }
+  songInfo = (song) => {
+    api.songs.songEventInfo(song).then(json => {
+      const songInfo = [song, json]
+      console.log(songInfo)
+      this.setState({songInfo}) 
+    })
+  }
 
   render() {
     if (this.state.user.id) {
@@ -51,9 +68,10 @@ class App extends Component {
             </li>
           </ul>
           <Route path="/search" exact render={props => <Search {...props} songs={this.state.allSongs} />} />
-          <Route path="/my-songs" exact render={props => <MySongs {...props} songs={this.state.songs} />} />
+          <Route path="/my-songs" exact render={props => <MySongs {...props} songs={this.state.songs} songInfo={this.songInfo} deleteSong={this.deleteSong} />} />
         </Router>
         <Home user={this.state.user} likeSong={this.likeSong} allSongs={this.state.allSongs} />
+        <SongInfo songInfo={this.state.songInfo} />
       </div>
     } else {
       return <Welcome login={this.login}/>
