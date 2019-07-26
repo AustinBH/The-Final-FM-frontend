@@ -24,9 +24,17 @@ const logIn = username => {
     .then(res => res.json())
 }
 
+const getAllSongs = () => {
+    return fetch('http://localhost:3000/api/v1/songs')
+    .then(res => res.json())
+}
+
 export const api = {
     auth: {
         logIn,
         signUp
+    },
+    songs: {
+        getAllSongs
     }
 }

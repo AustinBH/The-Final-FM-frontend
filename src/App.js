@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Welcome from './components/Welcome';
 import Home from './containers/Home';
-// import { api } from './services/api';
+import { api } from './services/api';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import MySongs from './components/MySongs';
 import Search from './components/Search';
@@ -11,11 +11,13 @@ class App extends Component {
 
   state = {
     user: {},
-    songs: []
+    songs: [],
+    allSongs: []
   }
 
   login = user => {
     this.setState({user: user, songs: user.songs})
+    api.songs.getAllSongs().then(json => this.setState({ allSongs: json }))
   }
 
   likeSong = (song) => {
@@ -45,14 +47,13 @@ class App extends Component {
               <Link to="/my-songs">My Songs</Link>
             </li>
             <li>
-              <Link to="/search">Artist Search</Link>
+              <Link to="/search">Song Search</Link>
             </li>
           </ul>
-          <Route path="/w" exact component={Home} />
+          <Route path="/search" exact render={props => <Search {...props} songs={this.state.allSongs} />} />
           <Route path="/my-songs" exact render={props => <MySongs {...props} songs={this.state.songs} />} />
-          <Route path="/search" exact component={Search} />
         </Router>
-        <Home user={this.state.user} likeSong={this.likeSong} />
+        <Home user={this.state.user} likeSong={this.likeSong} allSongs={this.state.allSongs} />
       </div>
     } else {
       return <Welcome login={this.login}/>
