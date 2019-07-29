@@ -1,33 +1,37 @@
-.App {
+.welcome-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.welcome-page h2 {
+  margin-left: auto;
+  margin-right: auto;
+  grid-area: 1 / 2 / span 1 / span 1;
+}
+
+.signup {
+  margin: auto;
+  grid-area: 2 / 1 / span 1 / span 2;
+}
+
+p {
   text-align: center;
+  margin: auto;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.login {
+  margin: auto;
+  grid-area: 2 / 2 / span 1 / span 2;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.nav-link {
+  width: 100px;
+  padding: 12px;
+  margin: 0px 6px 6px;
+  background: skyblue;
+  text-decoration: none;
+  color: aliceblue;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.home {
+  padding-top: 20px;
 }

@@ -25,18 +25,37 @@ class Search extends Component {
         }
     }
 
+    displayLikeSongButton = (song) => {
+        if (song.artist) {
+         return <button onClick={() => this.props.likeSong(song)}>Like Song</button>
+        } else {
+            return null
+        }
+    }
+
     render() {
         return (
             <div>
-                <h1>Search By Song</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <input type='text' value={this.state.input} onChange={this.handleChange} />
-                    <input type='submit' value='Search' />
-                </form>
-                <ul>{this.state.filteredSongs.map(song => {
-                    return <li key={song.id}>{song.title}</li>
-                })}</ul>
-              
+                <div>
+                    <h1>Search By Song</h1>
+                    <form onSubmit={this.handleSubmit}>
+                        <input type='text' value={this.state.input} onChange={this.handleChange} />
+                        <input type='submit' value='Search' />
+                    </form>
+                    <ul>{this.state.filteredSongs.map(song => {
+                        return <li key={song.id}>{song.title} {this.displayLikeSongButton(song)}</li>
+                    })}</ul>
+                </div>
+                <div>
+                    <h1>Search By Song</h1>
+                    <form onSubmit={this.handleSubmit}>
+                        <input type='text' value={this.state.input} onChange={this.handleChange} />
+                        <input type='submit' value='Search' />
+                    </form>
+                    <ul>{this.state.filteredSongs.map(song => {
+                        return <li key={song.id}>{song.title} {this.displayLikeSongButton(song)}</li>
+                    })}</ul>
+                </div>
             </div>
         )
     }
