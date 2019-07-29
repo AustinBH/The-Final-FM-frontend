@@ -26,7 +26,7 @@ class Welcome extends Component {
             api.auth.signUp(this.state.signup).then(json => this.props.login(json))
         }
         else if (ev.target.name === 'login-form') {
-            api.auth.logIn(this.state.login).then(json => {
+            api.auth.logIn().then(json => {
                 for (let user of json) {
                     if (user.username === this.state.login) {
                         return this.props.login(user)

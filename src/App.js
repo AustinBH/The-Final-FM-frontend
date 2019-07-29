@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import Modal from 'react-modal'
+import { api } from './services/api';
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import './App.css';
 import Welcome from './components/Welcome';
 import Home from './containers/Home';
-import { api } from './services/api';
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import MySongs from './components/MySongs';
 import Search from './containers/Search';
+
+Modal.setAppElement('#root')
 
 class App extends Component {
 
@@ -13,7 +16,16 @@ class App extends Component {
     user: {},
     songs: [],
     allSongs: [],
-    songInfo: []
+    songInfo: [],
+    modalIsOpen: false
+  }
+
+  openModal = () => {
+    this.setState({modalIsOpen: true})
+  }
+
+  closeModal = () => {
+    this.setState({modalIsOpen: false})
   }
 
   login = user => {
@@ -21,8 +33,17 @@ class App extends Component {
     api.songs.getAllSongs().then(json => this.setState({ allSongs: json }))
   }
 
+  compareSongs = song => {
+    for (let i = 0; i < this.state.songs.length; i++) {
+      if (this.state.songs[i].title === song.title) {
+        return false
+      }
+    }
+    return true
+  }
+
   likeSong = (song) => {
-    if (!this.state.songs.includes(song)) {
+    if (this.compareSongs(song)) {
       fetch('http://localhost:3000/api/v1/liked-songs', {
         method: 'POST',
         headers: {
@@ -35,8 +56,12 @@ class App extends Component {
         })
       })
         .then(this.setState({ songs: [...this.state.songs, song] }))
+    } else {
+      this.openModal()
+      setTimeout(() => this.closeModal(), 3000)
     }
   }
+
   deleteSong = (song) => {
     api.songs.deleteSong(song, this.state.user).then(json => {
       const songs = this.state.songs.filter(singleSong => singleSong.id !== song.id)
@@ -45,6 +70,7 @@ class App extends Component {
       })
     })
   }
+
   songInfo = (song) => {
     if (this.state.songInfo[0] && this.state.songInfo[0].title === song.title) {
        this.setState({ songInfo: [] })
@@ -73,6 +99,16 @@ class App extends Component {
           <Route path="/my-songs" exact render={props => <MySongs {...props} songs={this.state.songs} songInfo={this.songInfo} displaySongInfo={this.state.songInfo} deleteSong={this.deleteSong} />} />
         </Router>
         <Home user={this.state.user} likeSong={this.likeSong} allSongs={this.state.allSongs} />
+        <div>
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            onRequestClose={this.closeModal}
+            contentLabel="Example Modal"
+          >
+            <h2 ref={subtitle => this.subtitle = subtitle}>You already liked this song</h2>
+            <button onClick={this.closeModal}>close</button>
+          </Modal>
+        </div>
       </div>
     } else {
       return <Welcome login={this.login}/>
