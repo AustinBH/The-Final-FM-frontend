@@ -9,17 +9,16 @@
 }
 
 .signup {
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
   grid-area: 2 / 1 / span 1 / span 2;
 }
 
-p {
-  text-align: center;
-  margin: auto;
-}
-
 .login {
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
   grid-area: 2 / 2 / span 1 / span 2;
 }
 
@@ -34,4 +33,22 @@ p {
 
 .home {
   padding-top: 20px;
+}
+
+img {
+  max-width: 200px;
+  max-height: 100px;
+}
+
+.event-holder {
+  display: block;
+  margin: auto;
+  margin: 6px;
+  text-align: center;
+}
+
+.event-holder img {
+  border-radius: 8px;
+  display: block;
+  margin: auto;
 }

@@ -1,27 +1,34 @@
 import React, { Component } from 'react';
+import { api } from '../services/api';
 
 class Search extends Component {
     constructor() {
         super()
         this.state = {
-            input: '',
-            filteredSongs: []
+            title: '',
+            location: '',
+            filteredSongs: [],
+            events: []
         }
     }
 
     handleChange = ev => {
-        this.setState({input: ev.target.value})
+        this.setState({[ev.target.name]: ev.target.value})
     }
 
     handleSubmit = ev => {
         ev.preventDefault()
-        const filteredSongs = this.props.songs.filter(song => {
-            return song.title.toLowerCase().includes(this.state.input.toLowerCase())
-        })
-        if (filteredSongs.length === 0){
-            this.setState({filteredSongs: [{title: `There are no songs with ${this.state.input} in the title`, id: 'yeet'}]})
+        if (ev.target.name === 'title-form') {
+            const filteredSongs = this.props.songs.filter(song => {
+                return song.title.toLowerCase().includes(this.state.title.toLowerCase())
+            })
+            if (filteredSongs.length === 0) {
+                this.setState({ filteredSongs: [{ title: `There are no songs with ${this.state.title} in the title`, id: 'yeet' }] })
+            } else {
+                this.setState({ filteredSongs })
+            }
         } else {
-            this.setState({ filteredSongs })
+            api.songs.cityEventInfo(this.state.location).then(json => this.setState({events: json}))
         }
     }
 
@@ -35,26 +42,32 @@ class Search extends Component {
 
     render() {
         return (
-            <div>
-                <div>
-                    <h1>Search By Song</h1>
-                    <form onSubmit={this.handleSubmit}>
-                        <input type='text' value={this.state.input} onChange={this.handleChange} />
+            <div className='welcome-page'>
+                <div className='signup'>
+                    <h3>Search For Songs By Title</h3>
+                    <form onSubmit={this.handleSubmit} name='title-form'>
+                        <input type='text' name='title' value={this.state.input} onChange={this.handleChange} />
                         <input type='submit' value='Search' />
                     </form>
                     <ul>{this.state.filteredSongs.map(song => {
                         return <li key={song.id}>{song.title} {this.displayLikeSongButton(song)}</li>
                     })}</ul>
                 </div>
-                <div>
-                    <h1>Search By Song</h1>
-                    <form onSubmit={this.handleSubmit}>
-                        <input type='text' value={this.state.input} onChange={this.handleChange} />
+                <div className='login'>
+                    <h3>Search For Events By City</h3>
+                    <form onSubmit={this.handleSubmit} name='location-form'>
+                        <input type='text' name='location' value={this.state.input} onChange={this.handleChange} />
                         <input type='submit' value='Search' />
                     </form>
-                    <ul>{this.state.filteredSongs.map(song => {
-                        return <li key={song.id}>{song.title} {this.displayLikeSongButton(song)}</li>
-                    })}</ul>
+                    {this.state.events.map((event, idx) => {
+                        if (event.url) {
+                            return <div key={idx} className='event-holder'>
+                                <img src={event.images[0].url} alt={event.name + ' concert image'} />
+                                <a href={event.url}>{event.name}</a>
+                            </div>
+                        } else {
+                            return <p key='yeet'>{event.message}</p>
+                        }})}
                 </div>
             </div>
         )
