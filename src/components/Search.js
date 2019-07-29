@@ -62,7 +62,7 @@ class Search extends Component {
                     {this.state.events.map((event, idx) => {
                         if (event.url) {
                             return <div key={idx} className='event-holder'>
-                                <img src={event.images[0].url} alt={event.name + ' concert image'} />
+                                <img src={event.images[event.images.length-2].url} alt={event.name + ' concert image'} />
                                 <a href={event.url}>{event.name}</a>
                             </div>
                         } else {
