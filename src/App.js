@@ -5,8 +5,7 @@ import Home from './containers/Home';
 import { api } from './services/api';
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import MySongs from './components/MySongs';
-import Search from './components/Search';
-// import SongInfo from './components/SongInfo'
+import Search from './containers/Search';
 
 class App extends Component {
 
