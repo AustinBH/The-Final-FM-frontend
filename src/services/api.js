@@ -47,7 +47,12 @@ const deleteSong = (song, user) => {
 }
 const songEventInfo = (song) => {
     return fetch(`http://localhost:3000/api/v1/events-by-artist?artist_name=${song.artist.name}`)
-    .then(res => res.json())
+        .then(res => res.json())
+}
+
+const cityEventInfo = (city) => {
+    return fetch(`http://localhost:3000/api/v1/events-by-city?city=${city}`)
+        .then(res => res.json())
 }
 
 
@@ -59,6 +64,7 @@ export const api = {
     songs: {
         getAllSongs,
         deleteSong,
-        songEventInfo
+        songEventInfo,
+        cityEventInfo
     }
 }

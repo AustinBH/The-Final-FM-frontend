@@ -18,7 +18,7 @@ class Home extends Component {
  
     render() {
         return (
-            <div>
+            <div className='home'>
                 <RandomSong
                 randomSong={this.state.randomSong}
                 handleOnClick={this.displayRandomSongs}
