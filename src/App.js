@@ -16,12 +16,14 @@ class App extends Component {
   }
 
   login = user => {
+    localStorage.setItem('user_id', user.id)
     this.setState({user: user, songs: user.songs || []})
     api.songs.getAllSongs().then(json => this.setState({ allSongs: json }))
   }
 
   logout = () => {
     this.setState({user: {}, songs: []})
+    localStorage.clear()
   }
 
   compareSongs = song => {
@@ -59,8 +61,15 @@ class App extends Component {
     })
   }
 
+  componentDidMount() {
+    if (localStorage.getItem('user_id')) {
+      api.auth.checkLogin(localStorage.getItem('user_id')).then(json => this.setState({ user: json, songs: json.songs || [] }))
+      api.songs.getAllSongs().then(json => this.setState({ allSongs: json }))
+    }
+  }
+
   render() {
-    if (this.state.user.id) {
+    if (localStorage.getItem('user_id')) {
       return <Home
         user={this.state.user}
         songs={this.state.songs}
