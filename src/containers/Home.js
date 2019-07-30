@@ -12,7 +12,8 @@ class Home extends Component {
         super()
         this.state = {
             randomSong: [],
-            songInfo: []
+            songInfo: [],
+            isLoading: false
         }
     }
 
@@ -22,21 +23,27 @@ class Home extends Component {
     }
 
     songInfo = (song) => {
+        this.setState({isLoading: true})
         if (this.state.songInfo[0] && this.state.songInfo[0].title === song.title) {
             this.setState({ songInfo: [] })
+            this.setState({ isLoading: false })
         } else {
             const message = { message: `${song.artist.name} has no upcoming events` }
             api.songs.songEventInfo(song).then(json => {
                 if (json.message || json.status === 500) {
                     this.setState({ songInfo: [song, [message]] })
+                    this.setState({ isLoading: false })
                 }
                 else {
                     const songInfo = [song, json]
                     this.setState({ songInfo })
+                    this.setState({ isLoading: false })
                 }
             })
         }
     }
+
+
  
     render() {
         return (
@@ -47,7 +54,7 @@ class Home extends Component {
                     <NavLink className='nav-link' to="/search" exact>Song Search</NavLink>
                     <NavLink className='nav-link' to='/login' onClick={this.props.logout} exact>Logout</NavLink>
                     <Route path="/search" exact render={props => <Search {...props} songs={this.props.allSongs} likeSong={this.props.likeSong} />} />
-                    <Route path="/my-songs" exact render={props => <MySongs {...props} songs={this.props.songs} songInfo={this.songInfo} displaySongInfo={this.state.songInfo} deleteSong={this.props.deleteSong} />} />
+                    <Route path="/my-songs" exact render={props => <MySongs {...props} songs={this.props.songs} songInfo={this.songInfo} displaySongInfo={this.state.songInfo} deleteSong={this.props.deleteSong} loading={this.state.isLoading}/>} />
                 </Router>
                 <div className='home'>
                     <RandomSong

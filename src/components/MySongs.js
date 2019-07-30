@@ -9,7 +9,7 @@ const MySongs = (props) => {
                     return <li key={idx}>{song.title}<button onClick={() => props.songInfo(song)}>Display Song Info</button><button onClick={() => props.deleteSong(song)}>Delete Song</button></li>
                 })}
             </ul>
-            <SongInfo songInfo={props.displaySongInfo} />
+            <SongInfo songInfo={props.displaySongInfo} loading={props.loading} />
         </div>
     )
 }
