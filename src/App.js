@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import Modal from 'react-modal'
 import { api } from './services/api';
 import './App.css';
-import Welcome from './components/Welcome';
+import Welcome from './containers/Welcome';
 import Home from './containers/Home';
-
-Modal.setAppElement('#root')
 
 class App extends Component {
 

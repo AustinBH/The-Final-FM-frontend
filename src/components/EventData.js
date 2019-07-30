@@ -17,7 +17,6 @@ const EventData = props => {
                         {item.message}
                     </div>
                 }
-
             })
         } 
     }
