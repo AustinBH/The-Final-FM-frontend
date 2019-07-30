@@ -30,6 +30,11 @@ class MySongs extends Component {
         }
     }
 
+    deleteSong = song => {
+        this.setState({songInfo: []})
+        this.props.deleteSong(song)
+    }
+
     render() {
         return <div>
             <ul>
@@ -39,7 +44,7 @@ class MySongs extends Component {
                                 <button onClick={() => this.songInfo(song)}>
                                     Display Song Info
                                 </button>
-                                <button onClick={() => this.props.deleteSong(song)}>
+                                <button onClick={() => this.deleteSong(song)}>
                                     Delete Song
                                 </button>
                             </li>
