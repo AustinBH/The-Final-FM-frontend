@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { api } from '../services/api';
 import SearchForm from '../components/SearchForm';
 import SearchData from '../components/SearchData';
+import EventData from '../components/EventData';
 
 class Search extends Component {
     constructor() {
@@ -9,7 +10,9 @@ class Search extends Component {
         this.state = {
             title: '',
             city: '',
+            artist: '',
             filteredSongs: [],
+            artistSongs: [],
             events: []
         }
     }
@@ -29,8 +32,17 @@ class Search extends Component {
             } else {
                 this.setState({ filteredSongs })
             }
-        } else {
+        } else if (ev.target.name === 'city-form') {
             api.songs.cityEventInfo(this.state.city).then(json => this.setState({events: json}))
+        } else {
+            const artistSongs = this.props.songs.filter(song => {
+                return song.artist.name.toLowerCase().includes(this.state.artist.toLowerCase())
+            })
+            if (artistSongs.length === 0) {
+                this.setState({ artistSongs: [{title: `There are no songs by ${this.state.artist}`, id: 'yeet'}]})
+            } else {
+                this.setState({ artistSongs})
+            }
         }
     }
 
@@ -40,6 +52,10 @@ class Search extends Component {
         } else {
             return null
         }
+    }
+
+    componentDidMount() {
+        api.songs.getAllArtists().then(json => this.setState({allArtists: json}))
     }
 
     render() {
@@ -58,7 +74,14 @@ class Search extends Component {
                     handleOnChange={this.handleChange}
                     value={this.state.location}
                 />
-                <SearchData data={this.state.events}/>
+                <EventData data={this.state.events}/>
+                <SearchForm
+                    type='artist'
+                    handleOnSubmit={this.handleSubmit}
+                    handleOnChange={this.handleChange}
+                    value={this.state.artist}
+                />
+                <SearchData data={this.state.artistSongs} likeButton={this.displayLikeSongButton} />
             </div>
         )
     }
