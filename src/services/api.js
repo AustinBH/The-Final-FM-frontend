@@ -50,6 +50,20 @@ const deleteSong = (song, user) => {
     .then(res => res.json())
     
 }
+const likeSong = (song, user) => {
+    return fetch('http://localhost:3000/api/v1/liked-songs', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            user_id: user.id,
+            song_id: song.id
+        })
+    })
+    .then(res => res.json())
+}
 const songEventInfo = (song) => {
     return fetch(`http://localhost:3000/api/v1/events-by-artist?artist_name=${song.artist.name.replace(new RegExp(/[èéêë]/g), "e")}`)
         .then(res => res.json())
@@ -75,6 +89,7 @@ export const api = {
     songs: {
         getAllSongs,
         deleteSong,
+        likeSong,
         songEventInfo,
         cityEventInfo,
         getAllArtists

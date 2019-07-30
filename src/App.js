@@ -34,18 +34,7 @@ class App extends Component {
 
   likeSong = (song) => {
     if (this.compareSongs(song)) {
-      fetch('http://localhost:3000/api/v1/liked-songs', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          user_id: this.state.user.id,
-          song_id: song.id
-        })
-      })
-        .then(this.setState({ songs: [...this.state.songs, song] }))
+      api.songs.likeSong(song, this.state.user).then(json => this.setState({ songs: [...this.state.songs, song] }))
     }
   }
 
