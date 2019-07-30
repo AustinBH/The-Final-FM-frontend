@@ -10,22 +10,17 @@ class Welcome extends Component {
     }
 
     handleChange = ev => {
-        if (ev.target.name === 'signup') {
-            const signup = ev.target.value
-            this.setState({ signup })
-        }
-        else if (ev.target.name === 'login') {
-            const login = ev.target.value
-            this.setState({ login })
-        }
-
+        this.setState({ [ev.target.name]: ev.target.value })
     }
 
     handleSubmit = ev => {
         ev.preventDefault()
         if (ev.target.name === 'signup-form') {
-            api.auth.signUp(this.state.signup).then(json => this.props.handleLogin(json))
-            
+            if (this.state.signup) {
+                api.auth.signUp(this.state.signup).then(json => {
+                    json.id ? this.props.handleLogin(json) : alert("That username is taken")
+                }) 
+            }  
         }
         else if (ev.target.name === 'login-form') {
             api.auth.logIn().then(json => {
