@@ -24,6 +24,11 @@ const logIn = () => {
     .then(res => res.json())
 }
 
+const checkLogin = user_id => {
+    return fetch(`http://localhost:3000/api/v1/users/${user_id}`)
+    .then(res => res.json())
+}
+
 const getAllSongs = () => {
     return fetch('http://localhost:3000/api/v1/songs')
     .then(res => res.json())
@@ -64,7 +69,8 @@ const getAllArtists = () => {
 export const api = {
     auth: {
         logIn,
-        signUp
+        signUp,
+        checkLogin
     },
     songs: {
         getAllSongs,
