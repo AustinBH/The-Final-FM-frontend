@@ -13,7 +13,7 @@ const signUp = username => {
 
 }
 
-const logIn = username => {
+const logIn = () => {
     return fetch('http://localhost:3000/api/v1/users', {
         method: 'GET',
         headers: {
@@ -46,7 +46,7 @@ const deleteSong = (song, user) => {
     
 }
 const songEventInfo = (song) => {
-    return fetch(`http://localhost:3000/api/v1/events-by-artist?artist_name=${song.artist.name}`)
+    return fetch(`http://localhost:3000/api/v1/events-by-artist?artist_name=${song.artist.name.replace(new RegExp(/[èéêë]/g), "e")}`)
         .then(res => res.json())
 }
 
