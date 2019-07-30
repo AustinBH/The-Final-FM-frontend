@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal'
 import { api } from './services/api';
-// import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import './App.css';
 import Welcome from './components/Welcome';
 import Home from './containers/Home';
-// import MySongs from './components/MySongs';
-// import Search from './containers/Search';
 
 Modal.setAppElement('#root')
 
