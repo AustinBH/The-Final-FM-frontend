@@ -82,6 +82,7 @@ img {
   animation: App-logo-spin infinite 3s linear;
   pointer-events: none;
   display: inline;
+  height: 10vmin;
 }
 
 @keyframes App-logo-spin {
