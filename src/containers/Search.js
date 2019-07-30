@@ -13,7 +13,8 @@ class Search extends Component {
             artist: '',
             filteredSongs: [],
             artistSongs: [],
-            events: []
+            events: [],
+            isLoading: false
         }
     }
 
@@ -33,7 +34,12 @@ class Search extends Component {
                 this.setState({ filteredSongs })
             }
         } else if (ev.target.name === 'city-form') {
-            api.songs.cityEventInfo(this.state.city).then(json => this.setState({events: json}))
+            this.setState({ isLoading: true })
+            api.songs.cityEventInfo(this.state.city).then(json => {
+                this.setState({events: json})
+                this.setState({ isLoading: false })
+            })
+            
         } else {
             const artistSongs = this.props.songs.filter(song => {
                 return song.artist.name.toLowerCase().includes(this.state.artist.toLowerCase())
@@ -74,7 +80,7 @@ class Search extends Component {
                     handleOnChange={this.handleChange}
                     value={this.state.location}
                 />
-                <EventData data={this.state.events}/>
+                <EventData data={this.state.events} loading={this.state.isLoading}/>
                 <SearchForm
                     type='artist'
                     handleOnSubmit={this.handleSubmit}
