@@ -36,7 +36,7 @@ class Search extends Component {
         } else if (ev.target.name === 'city-form') {
             this.setState({ isLoading: true })
             api.songs.cityEventInfo(this.state.city).then(json => {
-                this.setState({events: json})
+                this.setState({ events: json })
                 this.setState({ isLoading: false })
             })
             

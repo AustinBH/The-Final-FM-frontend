@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { api } from '../services/api';
+import AuthForm from '../components/AuthForm';
 
 class Welcome extends Component {
 
@@ -44,22 +45,18 @@ class Welcome extends Component {
         return (
             <div className='welcome-page'>
                 <h2>Welcome to the Final FM</h2>
-                <div className='signup'>
-                    <p>Signup</p>
-                    <form onSubmit={this.handleSubmit} name='signup-form'>
-                        <label>Username</label>
-                        <input type='text' value={this.state.signup} name='signup' onChange={this.handleChange} />
-                        <input type='submit' value='Signup' />
-                    </form>
-                </div>
-                <div className='login'>
-                    <p>Login</p>
-                    <form onSubmit={this.handleSubmit} name='login-form'>
-                        <label>Username</label>
-                        <input type='text' value={this.state.login} name='login' onChange={this.handleChange} />
-                        <input type='submit' value='Login' />
-                    </form>
-                </div>
+                <AuthForm 
+                type='signup'
+                handleOnSubmit={this.handleSubmit}
+                handleOnChange={this.handleChange}
+                value={this.state.signup}
+                />
+                <AuthForm
+                    type='login'
+                    handleOnSubmit={this.handleSubmit}
+                    handleOnChange={this.handleChange}
+                    value={this.state.login}
+                />
             </div>
         )
 
