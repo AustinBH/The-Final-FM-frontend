@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal'
 import { api } from './services/api';
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+// import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import './App.css';
 import Welcome from './components/Welcome';
 import Home from './containers/Home';
-import MySongs from './components/MySongs';
-import Search from './containers/Search';
+// import MySongs from './components/MySongs';
+// import Search from './containers/Search';
 
 Modal.setAppElement('#root')
 
@@ -16,21 +16,16 @@ class App extends Component {
     user: {},
     songs: [],
     allSongs: [],
-    songInfo: [],
-    modalIsOpen: false
-  }
-
-  openModal = () => {
-    this.setState({modalIsOpen: true})
-  }
-
-  closeModal = () => {
-    this.setState({modalIsOpen: false})
+    songInfo: []
   }
 
   login = user => {
-    this.setState({user: user, songs: user.songs})
+    this.setState({user: user, songs: user.songs || []})
     api.songs.getAllSongs().then(json => this.setState({ allSongs: json }))
+  }
+
+  logout = () => {
+    this.setState({user: {}, songs: []})
   }
 
   compareSongs = song => {
@@ -56,9 +51,6 @@ class App extends Component {
         })
       })
         .then(this.setState({ songs: [...this.state.songs, song] }))
-    } else {
-      this.openModal()
-      setTimeout(() => this.closeModal(), 3000)
     }
   }
 
@@ -90,28 +82,17 @@ class App extends Component {
 
   render() {
     if (this.state.user.id) {
-      return <div>
-        <Router>
-          <NavLink className='nav-link' to="/" exact>Home</NavLink>
-          <NavLink className='nav-link' to="/my-songs" exact>My Songs</NavLink>
-          <NavLink className='nav-link' to="/search" exact>Song Search</NavLink>
-          <Route path="/search" exact render={props => <Search {...props} songs={this.state.allSongs} likeSong={this.likeSong}/>} />
-          <Route path="/my-songs" exact render={props => <MySongs {...props} songs={this.state.songs} songInfo={this.songInfo} displaySongInfo={this.state.songInfo} deleteSong={this.deleteSong} />} />
-        </Router>
-        <Home user={this.state.user} likeSong={this.likeSong} allSongs={this.state.allSongs} />
-        <div>
-          <Modal
-            isOpen={this.state.modalIsOpen}
-            onRequestClose={this.closeModal}
-            contentLabel="Example Modal"
-          >
-            <h2 ref={subtitle => this.subtitle = subtitle}>You already liked this song</h2>
-            <button onClick={this.closeModal}>close</button>
-          </Modal>
-        </div>
-      </div>
+      return <Home
+        user={this.state.user}
+        songs={this.state.songs}
+        allSongs={this.state.allSongs}
+        likeSong={this.likeSong}
+        songInfo={this.songInfo}
+        deleteSong={this.deleteSong}
+        logout={this.logout}
+        />
     } else {
-      return <Welcome login={this.login}/>
+      return <Welcome handleLogin={this.login} />
     }
   }
 }

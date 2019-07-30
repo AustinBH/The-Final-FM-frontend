@@ -23,13 +23,17 @@ class Welcome extends Component {
     handleSubmit = ev => {
         ev.preventDefault()
         if (ev.target.name === 'signup-form') {
-            api.auth.signUp(this.state.signup).then(json => this.props.login(json))
+            api.auth.signUp(this.state.signup).then(json => this.props.handleLogin(json))
+            
         }
         else if (ev.target.name === 'login-form') {
             api.auth.logIn().then(json => {
                 for (let user of json) {
                     if (user.username === this.state.login) {
-                        return this.props.login(user)
+                        return  (
+                            this.props.handleLogin(user),
+                            window.history.pushState('/login', 'home', '/')
+                        )
                     }
                 }
             })
