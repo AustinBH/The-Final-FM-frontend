@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 const RandomSong = (props) => {
 
-    return <div>
+    return <Fragment>
         <button onClick={props.handleOnClick}>Show Random Song</button>
         {props.randomSong.title ?
-            <p>{props.randomSong.title}
+            <Fragment>
+                <p>{props.randomSong.title}</p>
                 <button onClick={() => props.likeSong(props.randomSong)}>
                     Like Song
                 </button>
-            </p>
+            </Fragment>
         : null}
-    </div>
+    </Fragment>
 
 }
 

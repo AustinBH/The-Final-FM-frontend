@@ -12,6 +12,13 @@ class App extends Component {
     allSongs: []
   }
 
+  componentDidMount() {
+    if (localStorage.getItem('user_id')) {
+      api.auth.checkLogin(localStorage.getItem('user_id')).then(json => this.setState({ user: json, songs: json.songs || [] }))
+      api.songs.getAllSongs().then(json => this.setState({ allSongs: json }))
+    }
+  }
+
   login = user => {
     localStorage.setItem('user_id', user.id)
     this.setState({user: user, songs: user.songs || []})
@@ -45,13 +52,6 @@ class App extends Component {
         songs
       })
     })
-  }
-
-  componentDidMount() {
-    if (localStorage.getItem('user_id')) {
-      api.auth.checkLogin(localStorage.getItem('user_id')).then(json => this.setState({ user: json, songs: json.songs || [] }))
-      api.songs.getAllSongs().then(json => this.setState({ allSongs: json }))
-    }
   }
 
   render() {
