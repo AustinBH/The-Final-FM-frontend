@@ -32,7 +32,21 @@
 }
 
 .home {
-  padding-top: 20px;
+  float: right;
+  display: grid;
+  text-align: center;
+  overflow-wrap: break-word;
+  margin: 10px 10px 0px 0px;
+  width: 150px;
+}
+
+.home button {
+  margin: auto;
+  display: block;
+}
+
+.home p {
+  grid-area: 2 / 1 / span 2 / span 1;
 }
 
 img {

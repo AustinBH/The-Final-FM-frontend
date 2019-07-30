@@ -12,6 +12,13 @@ class App extends Component {
     allSongs: []
   }
 
+  componentDidMount() {
+    if (localStorage.getItem('user_id')) {
+      api.auth.checkLogin(localStorage.getItem('user_id')).then(json => this.setState({ user: json, songs: json.songs || [] }))
+      api.songs.getAllSongs().then(json => this.setState({ allSongs: json }))
+    }
+  }
+
   login = user => {
     localStorage.setItem('user_id', user.id)
     this.setState({user: user, songs: user.songs || []})
@@ -34,18 +41,7 @@ class App extends Component {
 
   likeSong = (song) => {
     if (this.compareSongs(song)) {
-      fetch('http://localhost:3000/api/v1/liked-songs', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          user_id: this.state.user.id,
-          song_id: song.id
-        })
-      })
-        .then(this.setState({ songs: [...this.state.songs, song] }))
+      api.songs.likeSong(song, this.state.user).then(json => this.setState({ songs: [...this.state.songs, song] }))
     }
   }
 
@@ -56,13 +52,6 @@ class App extends Component {
         songs
       })
     })
-  }
-
-  componentDidMount() {
-    if (localStorage.getItem('user_id')) {
-      api.auth.checkLogin(localStorage.getItem('user_id')).then(json => this.setState({ user: json, songs: json.songs || [] }))
-      api.songs.getAllSongs().then(json => this.setState({ allSongs: json }))
-    }
   }
 
   render() {

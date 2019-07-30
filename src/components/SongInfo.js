@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 const SongInfo = (props) => {
     return <div>
         {props.loading ? <p>Loading...</p> :
-            <div>
+            <Fragment>
                 <p>{props.songInfo[0] && props.songInfo[0].title}</p>
                 <p>{props.songInfo[0] && props.songInfo[0].artist.name + "'s upcoming concerts"}</p>
                 {props.songInfo[1] && props.songInfo[1].map((event, idx) => {
@@ -16,7 +16,7 @@ const SongInfo = (props) => {
                         return <p key='yeet'>{event.message}</p>
                     }
                 })}
-            </div>
+            </Fragment>
         }
     </div>       
 }
