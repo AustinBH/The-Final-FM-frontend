@@ -55,6 +55,11 @@ const cityEventInfo = (city) => {
         .then(res => res.json())
 }
 
+const getAllArtists = () => {
+    return fetch('http://localhost:3000/api/v1/artists')
+                .then(res => res.json())
+}
+
 
 export const api = {
     auth: {
@@ -65,6 +70,7 @@ export const api = {
         getAllSongs,
         deleteSong,
         songEventInfo,
-        cityEventInfo
+        cityEventInfo,
+        getAllArtists
     }
 }
