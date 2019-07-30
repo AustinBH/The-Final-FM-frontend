@@ -12,8 +12,7 @@ class App extends Component {
   state = {
     user: {},
     songs: [],
-    allSongs: [],
-    songInfo: []
+    allSongs: []
   }
 
   login = user => {
@@ -60,23 +59,6 @@ class App extends Component {
     })
   }
 
-  songInfo = (song) => {
-    if (this.state.songInfo[0] && this.state.songInfo[0].title === song.title) {
-       this.setState({ songInfo: [] })
-    } else {
-      const message = { message: `${song.artist.name} has no upcoming events` }
-      api.songs.songEventInfo(song).then(json => {
-        if (json.message || json.status === 500) {
-          this.setState({ songInfo: [song, [message]]})
-        }
-        else {
-          const songInfo = [song, json]
-          this.setState({ songInfo })
-        }
-      })
-    }
-  }
-
   render() {
     if (this.state.user.id) {
       return <Home
@@ -84,7 +66,6 @@ class App extends Component {
         songs={this.state.songs}
         allSongs={this.state.allSongs}
         likeSong={this.likeSong}
-        songInfo={this.songInfo}
         deleteSong={this.deleteSong}
         logout={this.logout}
         />
