@@ -77,3 +77,19 @@ img {
   margin-right: auto;
   text-align: center;
 }
+
+.App-logo {
+  animation: App-logo-spin infinite 3s linear;
+  height: 10vmin;
+  pointer-events: none;
+  display: inline;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

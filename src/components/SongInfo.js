@@ -1,8 +1,11 @@
 import React, { Fragment } from 'react';
+import logo from '../logo.svg';
 
 const SongInfo = (props) => {
     return <div>
-        {props.loading ? <p>Loading...</p> :
+        {props.loading ? <p>Loading
+            <img src={logo} className='App-logo' alt='loading-logo' />
+        </p> :
             <Fragment>
                 <p>{props.songInfo[0] && props.songInfo[0].title}</p>
                 <p>{props.songInfo[0] && props.songInfo[0].artist.name + "'s upcoming concerts"}</p>
