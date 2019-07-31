@@ -40,7 +40,7 @@ class Home extends Component {
                         className='nav-link'
                         to="/search" exact
                         activeStyle={{ background: 'darkcyan' }}
-                    >Song Search</NavLink>
+                    >Search</NavLink>
                     <NavLink 
                         className='nav-link'
                         to='/login' exact
