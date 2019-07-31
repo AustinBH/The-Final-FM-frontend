@@ -31,10 +31,6 @@
   text-align: center;
 }
 
-.middle ul {
-  list-style: none;
-  grid-area: 1 / 1 / span 1 / span 3;
-}
 
 .info {
   grid-area: 2 / 2 / span 1 / span 1;
@@ -42,34 +38,22 @@
   text-align: center;
 }
 
-.nav-link {
-  width: 100px;
-  padding: 10px;
-  margin: 10px 6px 6px 0px;
-  background: skyblue;
-  text-decoration: none;
-  color: aliceblue;
-}
 
 .home {
   float: right;
   display: grid;
   text-align: center;
   overflow-wrap: break-word;
-  margin: 10px 10px 0px 0px;
+  margin: 0px 5px 0px 0px;
   width: 150px;
   height: 100%;
   border-style: solid;
-  border-radius: 30px;
+  border-radius: 5px;
 }
 
 .home button {
   margin: auto;
   display: block;
-}
-
-.home p {
-  grid-area: 2 / 1 / span 1 / span 1;
 }
 
 img {
@@ -94,6 +78,9 @@ img {
   margin: 6px;
   text-align: center;
 }
+.list-group-item a {
+  color: black !important;
+}
 
 .search {
   margin-left: auto;
@@ -114,4 +101,34 @@ img {
   to {
     transform: rotate(360deg);
   }
+}
+
+#jumbotron-color {
+  background-color: #B24A3B;
+}
+
+#button_floater {
+    float: right;
+    margin: 0 auto;
+    
+}
+#button_floater button {
+  padding: 2px;
+}
+
+.list-group-item {
+  background-color: #74b6ab !important;
+}
+
+.btn:active {
+  background-color: #D982AF;
+}
+
+#like-random-song {
+  background-color: #74b6ab !important;
+}
+
+.search-label {
+  margin: auto;
+  text-align: center;
 }

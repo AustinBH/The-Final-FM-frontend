@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { api } from '../services/api';
 import SearchForm from '../components/SearchForm';
 import SearchData from '../components/SearchData';
@@ -54,7 +54,7 @@ class Search extends Component {
 
     displayLikeSongButton = (song) => {
         if (song.artist) {
-         return <button onClick={() => this.props.likeSong(song)}>Like Song</button>
+         return <button  className="btn btn-primary"  onClick={() => this.props.likeSong(song)}>Like Song</button>
         } else {
             return null
         }
@@ -66,29 +66,48 @@ class Search extends Component {
 
     render() {
         return (
-            <div className='welcome-page'>
-                <SearchForm
-                    type='title'
-                    handleOnSubmit={this.handleSubmit}
-                    handleOnChange={this.handleChange}
-                    value={this.state.title}
-                />
-                <SearchData data={this.state.filteredSongs} likeButton={this.displayLikeSongButton}/>
-                <SearchForm
-                    type='city'
-                    handleOnSubmit={this.handleSubmit}
-                    handleOnChange={this.handleChange}
-                    value={this.state.location}
-                />
-                <EventData data={this.state.events} loading={this.state.isLoading}/>
-                <SearchForm
-                    type='artist'
-                    handleOnSubmit={this.handleSubmit}
-                    handleOnChange={this.handleChange}
-                    value={this.state.artist}
-                />
-                <SearchData data={this.state.artistSongs} likeButton={this.displayLikeSongButton} />
-            </div>
+            <Fragment>
+                <div className='row'>
+                    <div className="col-sm-8 search-label">
+                        <h1>Song Search</h1>
+                    </div>
+                    <div className="col-sm-4 search-label">
+                        <h1>Event Search</h1>
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className="col-sm-4">
+                        
+                        <SearchForm
+                            type='title'
+                            handleOnSubmit={this.handleSubmit}
+                            handleOnChange={this.handleChange}
+                            value={this.state.title}
+                        />
+                        <SearchData data={this.state.filteredSongs} likeButton={this.displayLikeSongButton}/>
+
+
+                    </div>
+                    <div className="col-sm-4">
+                        <SearchForm
+                            type='artist'
+                            handleOnSubmit={this.handleSubmit}
+                            handleOnChange={this.handleChange}
+                            value={this.state.artist}
+                        />
+                        <SearchData data={this.state.artistSongs} likeButton={this.displayLikeSongButton} />
+                    </div>
+                    <div className="col-sm-4">                
+                        <SearchForm
+                            type='city'
+                            handleOnSubmit={this.handleSubmit}
+                            handleOnChange={this.handleChange}
+                            value={this.state.location}
+                        />
+                        <EventData data={this.state.events} loading={this.state.isLoading}/>
+                    </div>
+                </div>
+            </Fragment>
         )
     }
 }

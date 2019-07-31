@@ -5,7 +5,7 @@ const SearchForm = props => {
         <h3>Search by {props.type}</h3>
         <form onSubmit={props.handleOnSubmit} name={`${props.type}-form`}>
             <input type='text' name={props.type} value={props.value} onChange={props.handleOnChange} />
-            <input type='submit' value='Search' />
+            <input  className="btn btn-sm btn-primary" type='submit' value='Search' />
         </form>
     </div>
 }
