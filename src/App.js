@@ -55,8 +55,9 @@ class App extends Component {
   }
 
   render() {
-    if (localStorage.getItem('user_id')) {
-      return <Home
+    return (
+    localStorage.getItem('user_id') ?
+      <Home
         user={this.state.user}
         songs={this.state.songs}
         allSongs={this.state.allSongs}
@@ -64,9 +65,9 @@ class App extends Component {
         deleteSong={this.deleteSong}
         logout={this.logout}
         />
-    } else {
-      return <Welcome handleLogin={this.login} />
-    }
+    :
+     <Welcome handleLogin={this.login} />
+    )
   }
 }
 

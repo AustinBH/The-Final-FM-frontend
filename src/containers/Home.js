@@ -26,10 +26,26 @@ class Home extends Component {
                     />
                 </div>
                 <Router>
-                    <NavLink className='nav-link' to="/" exact>Home</NavLink>
-                    <NavLink className='nav-link' to="/my-songs" exact>My Songs</NavLink>
-                    <NavLink className='nav-link' to="/search" exact>Song Search</NavLink>
-                    <NavLink className='nav-link' to='/login' onClick={this.props.logout} exact>Logout</NavLink>
+                    <NavLink 
+                        className='nav-link'
+                        to="/" exact
+                        activeStyle={{ background: 'darkcyan' }}
+                    >Home</NavLink>
+                    <NavLink 
+                        className='nav-link'
+                        to="/my-songs" exact
+                        activeStyle={{ background: 'darkcyan' }}
+                    >My Songs</NavLink>
+                    <NavLink 
+                        className='nav-link'
+                        to="/search" exact
+                        activeStyle={{ background: 'darkcyan' }}
+                    >Search</NavLink>
+                    <NavLink 
+                        className='nav-link'
+                        to='/login' exact
+                        onClick={this.props.logout}
+                    >Logout</NavLink>
                     <Route path="/search" exact render={props => <Search {...props} songs={this.props.allSongs} likeSong={this.props.likeSong} />} />
                     <Route path="/my-songs" exact render={props => <MySongs {...props} songs={this.props.songs} deleteSong={this.props.deleteSong}/>} />
                 </Router>

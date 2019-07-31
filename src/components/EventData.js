@@ -1,12 +1,14 @@
 import React from 'react';
+import logo from '../logo.svg';
 
 const EventData = props => {
 
-    const filterData = () => {
-        if (props.loading) {
-            return <p>Loading...</p>
-        } else {
-            return props.data.map((item, idx) => {
+    return <div className="data-holder">
+        {props.loading ? <p>Loading
+                            <img src={logo} className='App-logo' alt='loading-logo' />
+        </p>
+            :
+            props.data.map((item, idx) => {
                 if (item.url) {
                     return <div key={idx}>
                         <img src={item.images[item.images.length - 2].url} alt={item.name + " concert image"} />
@@ -19,10 +21,6 @@ const EventData = props => {
                 }
             })
         } 
-    }
-
-    return <div className="data-holder">
-        {filterData()}
     </div>
 }
 
