@@ -36,7 +36,7 @@ class MySongs extends Component {
     }
 
     render() {
-        return <div>
+        return <div className='middle'>
             <ul>
                 {this.props.songs.map((song, idx) => {
                     return <li key={idx}>

@@ -22,10 +22,30 @@
   grid-area: 2 / 2 / span 1 / span 2;
 }
 
+.middle {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.middle ul {
+  list-style: none;
+  grid-area: 1 / 1 / span 1 / span 3;
+}
+
+.info {
+  grid-area: 2 / 2 / span 1 / span 1;
+  margin: auto;
+  text-align: center;
+}
+
 .nav-link {
   width: 100px;
-  padding: 12px;
-  margin: 0px 6px 6px;
+  padding: 10px;
+  margin: 10px 6px 6px 0px;
   background: skyblue;
   text-decoration: none;
   color: aliceblue;
@@ -38,7 +58,7 @@
   overflow-wrap: break-word;
   margin: 10px 10px 0px 0px;
   width: 150px;
-  height: 250px;
+  height: 100%;
   border-style: solid;
   border-radius: 30px;
 }
@@ -84,7 +104,6 @@ img {
 .App-logo {
   animation: App-logo-spin infinite 3s linear;
   pointer-events: none;
-  display: inline;
   height: 10vmin;
 }
 

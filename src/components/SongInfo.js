@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import logo from '../logo.svg';
 
 const SongInfo = (props) => {
-    return <div>
+    return <div className='info'>
         {props.loading ? <p>Loading
             <img src={logo} className='App-logo' alt='loading-logo' />
         </p> :
