@@ -7,6 +7,10 @@ const RandomSong = (props) => {
         {props.randomSong.title ?
             <Fragment>
                 <p>{props.randomSong.title}</p>
+                {props.randomSong.album_img_url !== 'unspecified' ?
+                    <img src={props.randomSong.album_img_url} alt={props.randomSong.title + ' album artwork'} />
+                : <span>No Album Artwork Available</span>
+                }
                 <button onClick={() => props.likeSong(props.randomSong)}>
                     Like Song
                 </button>
