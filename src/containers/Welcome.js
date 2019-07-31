@@ -38,20 +38,34 @@ class Welcome extends Component {
  
     render() {
         return (
-            <div className='welcome-page'>
-                <h2>Welcome to the Final FM</h2>
-                <AuthForm 
-                type='signup'
-                handleOnSubmit={this.handleSubmit}
-                handleOnChange={this.handleChange}
-                value={this.state.signup}
-                />
-                <AuthForm
-                    type='login'
+            <div className="container">
+                <div className='jumbotron' id="jumbotron-color">
+                    <h1>The Final FM</h1>
+                    <hr className="my-4" />
+                    </div>
+                    <div className="row">
+                        <div className="col-sm-4">
+                        <AuthForm 
+                    type='signup'
                     handleOnSubmit={this.handleSubmit}
                     handleOnChange={this.handleChange}
-                    value={this.state.login}
-                />
+                    value={this.state.signup}
+                    />
+
+                        </div>
+                        <div className="col-sm-4">
+                        <AuthForm
+                        type='login'
+                        handleOnSubmit={this.handleSubmit}
+                        handleOnChange={this.handleChange}
+                        value={this.state.login}
+                    />
+
+                        </div>
+                    </div>
+
+
+
             </div>
         )
 

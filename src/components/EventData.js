@@ -10,10 +10,10 @@ const EventData = props => {
             :
             props.data.map((item, idx) => {
                 if (item.url) {
-                    return <div key={idx}>
-                        <img src={item.images[item.images.length - 2].url} alt={item.name + " concert image"} />
-                        <a href={item.url}>{item.name}</a>
-                    </div>
+                    return <li className="list-group-item" key={idx}>
+                        
+                        <a href={item.url} target="_blank"  rel="noopener noreferrer" ><img src={item.images[item.images.length - 2].url} alt={item.name + " concert image"} />{item.name}</a>
+                    </li>
                 } else {
                     return <div key={idx}>
                         {item.message}

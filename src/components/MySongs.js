@@ -36,21 +36,27 @@ class MySongs extends Component {
     }
 
     render() {
-        return <div className='middle'>
-            <ul>
-                {this.props.songs.map((song, idx) => {
-                    return <li key={idx}>
-                                {song.title}
-                                <button onClick={() => this.songInfo(song)}>
-                                    Display Song Info
-                                </button>
-                                <button onClick={() => this.deleteSong(song)}>
-                                    Delete Song
-                                </button>
-                            </li>
-                })}
-            </ul>
-            <SongInfo songInfo={this.state.songInfo} loading={this.state.isLoading} />
+        return <div className="row">
+            <div className="col-sm-6">
+                <ul className="list-group">
+                    {this.props.songs.map((song, idx) => {
+                        return <li className="list-group-item " key={idx}>
+                                    {song.title}
+                                    <span id="button_floater">
+                                        <button className="btn btn-primary" onClick={() => this.songInfo(song)}>
+                                            Display Song Info
+                                        </button>
+                                        <button className="btn btn-danger" onClick={() => this.deleteSong(song)}>
+                                            Delete Song
+                                        </button>
+                                    </span>
+                                </li>
+                    })}
+                </ul>
+            </div>
+            <div className="col-sm-6">
+                <SongInfo songInfo={this.state.songInfo} loading={this.state.isLoading} />
+            </div>
         </div> 
     }
 }
