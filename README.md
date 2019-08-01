@@ -28,16 +28,16 @@ Once the git repository is forked and cloned, in the project directory, you can 
 At this point you will want to make sure that the [backend API](https://github.com/AustinBH/The-Final-FM-backend) is also configured and running.
 
 Once the npm is installed run:<br>
+
 **`npm start`**
 
 Runs the app in the development mode.<br>
-However, if you are running the backend API at the same time you will need to open [http://localhost:3001](http://localhost:3001) to view it in the browser, or specify a specific port for the json server to run on and the app to run on.<br>
-**They cannot run on the same port**
+However, if you are running the backend API at the same time you will need to open [http://localhost:3001](http://localhost:3001) to view it in the browser, or specify a specific port for the json server to run on and the app to run on. **They cannot run on the same port**
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
 
 
-##Contributors
+## Contributors
 * Both the front and backends of this project were built by [Austin Harlow](https://github.com/AustinBH) and [DaNeil Coulthard](https://github.com/caffiendkitten).
