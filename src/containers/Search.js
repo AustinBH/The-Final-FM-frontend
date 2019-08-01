@@ -77,7 +77,6 @@ class Search extends Component {
                 </div>
                 <div className='row'>
                     <div className="col-sm-4">
-                        
                         <SearchForm
                             type='title'
                             handleOnSubmit={this.handleSubmit}

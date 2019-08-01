@@ -3,7 +3,6 @@ import { Container, Row, Col, Jumbotron } from 'react-bootstrap';
 import { api } from '../services/api';
 import AuthForm from '../components/AuthForm';
 
-
 class Welcome extends Component {
 
     state = {
@@ -32,6 +31,8 @@ class Welcome extends Component {
                             this.props.handleLogin(user),
                             window.history.pushState('/login', 'home', '/')
                         )
+                    } else {
+                        this.props.addError('login')
                     }
                 }
             })

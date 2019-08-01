@@ -1,9 +1,13 @@
 {
   "name": "the-final-fm-frontend",
   "version": "0.1.0",
+  "homepage": "https://austinbh.github.io/The-Final-FM-frontend/",
   "private": true,
   "dependencies": {
     "bootstrap": "^3.4.1",
+    "express": "^4.17.1",
+    "express-favicon": "^2.0.1",
+    "gh-pages": "^2.1.0",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.10",
     "react-dom": "^16.8.6",
@@ -12,6 +16,8 @@
     "react-scripts": "3.0.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Button from 'react-bootstrap/Button';
+import { Button, DropdownButton, ListGroup, Dropdown } from 'react-bootstrap';
 import { api } from '../services/api';
 import SongInfo from './SongInfo';
 
@@ -39,21 +39,27 @@ class MySongs extends Component {
     render() {
         return <div className="row">
             <div className="col-sm-6">
-                <ul className="list-group">
+                <ListGroup>
                     {this.props.songs.map((song, idx) => {
-                        return <li className="list-group-item " key={idx}>
-                            <span>{song.title}</span>
-                                    <span id="button_floater">
-                                        <Button variant="primary" onClick={() => this.songInfo(song)}>
-                                            Display Song Info
-                                        </Button>
-                                        <Button variant="danger" onClick={() => this.deleteSong(song)}>
-                                            Delete Song
-                                        </Button>
-                                    </span>
-                                </li>
+                        return <ListGroup.Item key={idx}>
+                                <span>{song.title}</span>
+                                    <div id="button_floater">
+                                        <DropdownButton title='More Info' variant="secondary">
+                                            <Dropdown.Item>
+                                                <Button variant="primary" onClick={() => this.songInfo(song)}>
+                                                    Display Event Info
+                                                </Button>
+                                            </Dropdown.Item>
+                                            <Dropdown.Item>
+                                                <Button variant="danger" onClick={() => this.deleteSong(song)}>
+                                                    Delete Song
+                                                </Button>
+                                            </Dropdown.Item>
+                                        </DropdownButton>
+                                    </div>
+                                </ListGroup.Item>
                     })}
-                </ul>
+                </ListGroup>
             </div>
             <div className="col-sm-6">
                 <SongInfo songInfo={this.state.songInfo} loading={this.state.isLoading} />
