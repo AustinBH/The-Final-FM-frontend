@@ -9,9 +9,8 @@ const AuthForm = props => {
     return <div className={props.type}>
                 <p>{capitalize(props.type)}</p>
                 <form onSubmit={props.handleOnSubmit} name={props.type + '-form'}>
-                    <label>Username</label>
-                    <input type='text' value={props.value} name={props.type} onChange={props.handleOnChange} />
-                    <input type='submit' value={props.type} />
+                    <input type='text' value={props.value} placeholder="Username" name={props.type} onChange={props.handleOnChange} />
+                    <input className="btn btn-sm btn-primary" type='submit' value={props.type} />
                 </form>
             </div>
 }
