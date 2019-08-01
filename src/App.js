@@ -3,8 +3,7 @@ import { api } from './services/api';
 import './App.css';
 import Welcome from './containers/Welcome';
 import Home from './containers/Home';
-import ErrorModal from './components/ErrorModal';
-
+import {Button, Modal} from 'react-bootstrap';
 
 
 class App extends Component {
@@ -13,8 +12,12 @@ class App extends Component {
     user: {},
     songs: [],
     allSongs: [],
-    error: ''
+    error: '',
+    show: false
   }
+
+  handleClose = () => this.setState({show: false});
+  handleShow = () => this.setState({show: true});
 
   componentDidMount() {
     if (localStorage.getItem('user_id')) {
@@ -66,13 +69,27 @@ class App extends Component {
       :this.setState({
         error: `You have already liked this song.`
       })
-    document.getElementById("errorModal").modal("show")
+    this.handleShow()
   }
 
   render() {
     return (
       <Fragment>
-        <ErrorModal />
+        <Modal show={this.state.show} animation={false} onHide={this.handleClose} className="error-modal">
+          <Modal.Header closeButton>
+            <Modal.Title>Error!!!!</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>{this.state.error}</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleClose}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
+
+
+
         {localStorage.getItem('user_id') ?
           <Home
             user={this.state.user}

@@ -13,11 +13,11 @@ const ErrorModal = props => {
           Launch demo modal
         </Button>
 
-        <Modal show={show} onHide={handleClose} className="error-modal">
+        <Modal show={show} animation={false} onHide={handleClose} className="error-modal">
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Error Message</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+          <Modal.Body>{props.error}</Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
