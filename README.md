@@ -1,6 +1,6 @@
-![](https://media.giphy.com/media/3lxD1O74siiz5FvrJs/giphy.gif)
-
 # The Final FM
+
+![](https://media.giphy.com/media/3lxD1O74siiz5FvrJs/giphy.gif)
 
 The Final FM is a song likeing application that allows a user to login or create an account. From here a user will be able to:
 - search for randon songs
