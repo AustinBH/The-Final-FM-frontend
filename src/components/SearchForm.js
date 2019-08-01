@@ -1,12 +1,22 @@
 import React from 'react';
+import { Form, Button } from 'react-bootstrap';
 
 const SearchForm = props => {
     return <div className='search'>
-        <h3>Search by {props.type}</h3>
-        <form onSubmit={props.handleOnSubmit} name={`${props.type}-form`}>
-            <input type='text' name={props.type} value={props.value} onChange={props.handleOnChange} />
-            <input  className="btn btn-sm btn-primary" type='submit' value='Search' />
-        </form>
+        <Form onSubmit={props.handleOnSubmit} name={`${props.type}-form`}>
+            <Form.Group controlId="formBasicEmail">
+                <Form.Label>Search by {props.type}</Form.Label>
+                <Form.Control
+                    type='text'
+                    name={props.type}
+                    value={props.value}
+                    onChange={props.handleOnChange}
+                    placeholder={'Enter ' + props.type}/>
+            </Form.Group>
+            <Button variant="primary" size='sm' type="submit">
+                Search
+            </Button>
+        </Form>
     </div>
 }
 
