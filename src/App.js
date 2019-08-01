@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { api } from './services/api';
 import './App.css';
 import Welcome from './containers/Welcome';
 import Home from './containers/Home';
+import {Button, Modal} from 'react-bootstrap';
 
 
 class App extends Component {
@@ -10,8 +11,13 @@ class App extends Component {
   state = {
     user: {},
     songs: [],
-    allSongs: []
+    allSongs: [],
+    error: '',
+    show: false
   }
+
+  handleClose = () => this.setState({show: false});
+  handleShow = () => this.setState({show: true});
 
   componentDidMount() {
     if (localStorage.getItem('user_id')) {
@@ -54,21 +60,50 @@ class App extends Component {
       })
     })
   }
+  
+  addError = (str) => {
+    str === "username" ? 
+      this.setState({
+        error: `The username is taken.`
+      })
+      :this.setState({
+        error: `You have already liked this song.`
+      })
+    this.handleShow()
+  }
 
   render() {
     return (
-    localStorage.getItem('user_id') ?
-      <Home
-        user={this.state.user}
-        songs={this.state.songs}
-        allSongs={this.state.allSongs}
-        likeSong={this.likeSong}
-        deleteSong={this.deleteSong}
-        logout={this.logout}
-        />
-    :
-     <Welcome handleLogin={this.login} />
+      <Fragment>
+        <Modal show={this.state.show} animation={false} onHide={this.handleClose} className="error-modal">
+          <Modal.Header closeButton>
+            <Modal.Title>Error!!!!</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>{this.state.error}</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleClose}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
+
+
+
+        {localStorage.getItem('user_id') ?
+          <Home
+            user={this.state.user}
+            songs={this.state.songs}
+            allSongs={this.state.allSongs}
+            likeSong={this.likeSong}
+            deleteSong={this.deleteSong}
+            logout={this.logout}
+            />
+        :
+        <Welcome handleLogin={this.login} addError={this.addError} />}
+      </Fragment>
     )
+    
   }
 }
 
