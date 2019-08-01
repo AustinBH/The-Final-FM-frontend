@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import logo from '../logo.svg';
 
 const SongInfo = (props) => {

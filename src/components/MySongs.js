@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import Button from 'react-bootstrap/Button';
 import { api } from '../services/api';
-import SongInfo from './SongInfo'
+import SongInfo from './SongInfo';
 
 class MySongs extends Component {
 
@@ -41,14 +42,14 @@ class MySongs extends Component {
                 <ul className="list-group">
                     {this.props.songs.map((song, idx) => {
                         return <li className="list-group-item " key={idx}>
-                                    {song.title}
+                            <span>{song.title}</span>
                                     <span id="button_floater">
-                                        <button className="btn btn-primary" onClick={() => this.songInfo(song)}>
+                                        <Button variant="primary" onClick={() => this.songInfo(song)}>
                                             Display Song Info
-                                        </button>
-                                        <button className="btn btn-danger" onClick={() => this.deleteSong(song)}>
+                                        </Button>
+                                        <Button variant="danger" onClick={() => this.deleteSong(song)}>
                                             Delete Song
-                                        </button>
+                                        </Button>
                                     </span>
                                 </li>
                     })}

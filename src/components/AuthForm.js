@@ -1,4 +1,5 @@
 import React from 'react';
+import { Form, Button} from 'react-bootstrap';
 
 const AuthForm = props => {
 
@@ -7,11 +8,24 @@ const AuthForm = props => {
     }
 
     return <div className={props.type}>
-                <p>{capitalize(props.type)}</p>
-                <form onSubmit={props.handleOnSubmit} name={props.type + '-form'}>
-                    <input type='text' value={props.value} placeholder="Username" name={props.type} onChange={props.handleOnChange} />
-                    <input className="btn btn-sm btn-primary" type='submit' value={props.type} />
-                </form>
+                <Form
+                    onSubmit={props.handleOnSubmit}
+                    name={props.type + '-form'}
+                >
+                    <Form.Group controlId="formBasicUsername">
+                        <Form.Label>{capitalize(props.type)}</Form.Label>
+                        <Form.Control
+                            type="text"
+                            required={true}
+                            placeholder="Enter username"
+                            value={props.value}
+                            name={props.type}
+                            onChange={props.handleOnChange}/>
+                    </Form.Group>
+                    <Button variant="primary" size='sm' type="submit">
+                        {props.type}
+                    </Button>
+                </Form>
             </div>
 }
 

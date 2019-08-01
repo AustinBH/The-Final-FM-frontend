@@ -31,29 +31,38 @@
   text-align: center;
 }
 
-
 .info {
   grid-area: 2 / 2 / span 1 / span 1;
   margin: auto;
   text-align: center;
 }
 
-
 .home {
   float: right;
   display: grid;
   text-align: center;
   overflow-wrap: break-word;
-  margin: 0px 5px 0px 0px;
+  margin: 0px;
   width: 150px;
   height: 100%;
-  border-style: solid;
-  border-radius: 5px;
+  background-color: #B24A3B;
 }
 
 .home button {
   margin: auto;
   display: block;
+}
+
+.home-page {
+  margin: auto;
+  text-align: center;
+  height: 50%;
+  width: 50%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ffffff;
+  border-radius: 5px;
+  background-color: #74b6ab;
 }
 
 img {
@@ -62,6 +71,7 @@ img {
   border-radius: 8px;
   display: block;
   margin: auto;
+  padding-bottom: 3px;
 }
 
 .data-holder {
@@ -91,7 +101,7 @@ img {
 .App-logo {
   animation: App-logo-spin infinite 3s linear;
   pointer-events: none;
-  height: 10vmin;
+  height: 100%;
 }
 
 @keyframes App-logo-spin {
@@ -101,6 +111,14 @@ img {
   to {
     transform: rotate(360deg);
   }
+}
+
+span {
+  word-wrap: break-word;
+}
+
+.modal-content {
+  background-color: #74b6ab !important;
 }
 
 #jumbotron-color {

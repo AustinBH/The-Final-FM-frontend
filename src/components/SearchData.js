@@ -8,7 +8,6 @@ const SearchData = props => {
                 return <li className="list-group-item" key={idx}>
                     {item.title}
                     <span id="button_floater">{props.likeButton(item)}</span>
-                    
                 </li>
             })  
         }
