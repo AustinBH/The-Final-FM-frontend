@@ -16,6 +16,7 @@ const AuthForm = props => {
                         <Form.Label>{capitalize(props.type)}</Form.Label>
                         <Form.Control
                             type="text"
+                            required={true}
                             placeholder="Enter username"
                             value={props.value}
                             name={props.type}

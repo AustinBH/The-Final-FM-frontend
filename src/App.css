@@ -101,7 +101,7 @@ img {
 .App-logo {
   animation: App-logo-spin infinite 3s linear;
   pointer-events: none;
-  height: 10vmin;
+  height: 100%;
 }
 
 @keyframes App-logo-spin {
@@ -111,6 +111,10 @@ img {
   to {
     transform: rotate(360deg);
   }
+}
+
+span {
+  word-wrap: break-word;
 }
 
 .modal-content {

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Container, Row, Col, Jumbotron } from 'react-bootstrap';
 import { api } from '../services/api';
 import AuthForm from '../components/AuthForm';
-import { Container, Row, Col, Jumbotron } from 'react-bootstrap';
+
 
 class Welcome extends Component {
 

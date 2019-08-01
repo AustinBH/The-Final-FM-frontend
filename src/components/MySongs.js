@@ -42,7 +42,7 @@ class MySongs extends Component {
                 <ul className="list-group">
                     {this.props.songs.map((song, idx) => {
                         return <li className="list-group-item " key={idx}>
-                                    {song.title}
+                            <span>{song.title}</span>
                                     <span id="button_floater">
                                         <Button variant="primary" onClick={() => this.songInfo(song)}>
                                             Display Song Info

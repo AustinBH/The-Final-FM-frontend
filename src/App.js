@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
+import {Modal} from 'react-bootstrap';
 import { api } from './services/api';
 import './App.css';
 import Welcome from './containers/Welcome';
 import Home from './containers/Home';
-import {Modal} from 'react-bootstrap';
+
 
 
 class App extends Component {
@@ -92,6 +93,7 @@ class App extends Component {
           <Modal.Body>{this.state.error}</Modal.Body>
         </Modal>
         {localStorage.getItem('user_id') ?
+
           <Home
             user={this.state.user}
             songs={this.state.songs}
