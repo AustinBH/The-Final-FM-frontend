@@ -115,6 +115,7 @@ img {
 
 span {
   word-wrap: break-word;
+  text-align: center;
 }
 
 .modal-content {
@@ -126,9 +127,8 @@ span {
 }
 
 #button_floater {
-    float: right;
-    margin: 0 auto;
-    
+  float: right;
+  margin: 0 auto;
 }
 #button_floater button {
   padding: 2px;
@@ -149,4 +149,9 @@ span {
 .search-label {
   margin: auto;
   text-align: center;
+}
+
+.dropdown-menu {
+  display: block;
+  margin: auto;
 }

@@ -1,20 +1,21 @@
 import React from 'react';
+import { ListGroup } from 'react-bootstrap';
 
 const SearchData = props => {
 
     const filterData = () => {
         if (props.data[0] && props.data[0].title) {
             return props.data.map((item, idx) => {
-                return <li className="list-group-item" key={idx}>
+                return <ListGroup.Item key={idx}>
                     {item.title}
                     <span id="button_floater">{props.likeButton(item)}</span>
-                </li>
+                </ListGroup.Item>
             })  
         }
     }
 
     return <div className="data-holder">
-        <ul className="list-group">{filterData()}</ul>
+        <ListGroup>{filterData()}</ListGroup>
     </div>
 }
 

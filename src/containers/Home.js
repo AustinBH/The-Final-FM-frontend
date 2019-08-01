@@ -39,7 +39,7 @@ class Home extends Component {
                             <Nav className="mr-auto">
                                 <NavLink
                                     className='btn btn-primary btn-sm'
-                                    to="/home" exact
+                                    to="/" exact
                                     activeStyle={{ background: '#74B7AC' }}
                                 >Home</NavLink>
                                 <NavLink
@@ -61,7 +61,7 @@ class Home extends Component {
                         </Navbar>
                         
                     </Jumbotron>
-                    <Route path ="/home" exact render={props => <HomePage {...props} user={this.props.user}/>} ></Route>
+                    <Route path ="/" exact render={props => <HomePage {...props} user={this.props.user}/>} ></Route>
                     <Route path="/search" exact render={props => <Search {...props} songs={this.props.allSongs} likeSong={this.props.likeSong} />} />
                     <Route path="/my-songs" exact render={props => <MySongs {...props} songs={this.props.songs} deleteSong={this.props.deleteSong}/>} />
                 </Router>

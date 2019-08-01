@@ -1,11 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import {Modal} from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { api } from './services/api';
 import './App.css';
 import Welcome from './containers/Welcome';
 import Home from './containers/Home';
-
-
 
 class App extends Component {
 
@@ -65,14 +63,19 @@ class App extends Component {
   }
   
   addError = (str) => {
-    str === "username" ? 
+    if (str === "username") {
       this.setState({
-        error: `The username is taken.`
+        error: `That username is taken.`
       })
-      :this.setState({
+    } else if (str === 'login') {
+      this.setState({
+        error: 'Please enter a valid username'
+      })
+    } else {
+      this.setState({
         error: `You have already liked this song.`
       })
-    
+    }
     this.handleShow()
   }
 
@@ -106,7 +109,6 @@ class App extends Component {
         <Welcome handleLogin={this.login} addError={this.addError} />}
       </Fragment>
     )
-    
   }
 }
 
