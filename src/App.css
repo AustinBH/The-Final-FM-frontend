@@ -132,3 +132,7 @@ img {
   margin: auto;
   text-align: center;
 }
+
+.error-modal {
+  z-index: 50
+}

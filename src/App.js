@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { api } from './services/api';
 import './App.css';
 import Welcome from './containers/Welcome';
 import Home from './containers/Home';
+import ErrorModal from './components/ErrorModal';
+
 
 
 class App extends Component {
@@ -10,7 +12,8 @@ class App extends Component {
   state = {
     user: {},
     songs: [],
-    allSongs: []
+    allSongs: [],
+    error: ''
   }
 
   componentDidMount() {
@@ -54,21 +57,36 @@ class App extends Component {
       })
     })
   }
+  
+  addError = (str) => {
+    str === "username" ? 
+      this.setState({
+        error: `The username is taken.`
+      })
+      :this.setState({
+        error: `You have already liked this song.`
+      })
+    document.getElementById("errorModal").modal("show")
+  }
 
   render() {
     return (
-    localStorage.getItem('user_id') ?
-      <Home
-        user={this.state.user}
-        songs={this.state.songs}
-        allSongs={this.state.allSongs}
-        likeSong={this.likeSong}
-        deleteSong={this.deleteSong}
-        logout={this.logout}
-        />
-    :
-     <Welcome handleLogin={this.login} />
+      <Fragment>
+        <ErrorModal />
+        {localStorage.getItem('user_id') ?
+          <Home
+            user={this.state.user}
+            songs={this.state.songs}
+            allSongs={this.state.allSongs}
+            likeSong={this.likeSong}
+            deleteSong={this.deleteSong}
+            logout={this.logout}
+            />
+        :
+        <Welcome handleLogin={this.login} addError={this.addError} />}
+      </Fragment>
     )
+    
   }
 }
 

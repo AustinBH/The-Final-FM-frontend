@@ -18,7 +18,7 @@ class Welcome extends Component {
         if (ev.target.name === 'signup-form') {
             if (this.state.signup) {
                 api.auth.signUp(this.state.signup).then(json => {
-                    json.id ? this.props.handleLogin(json) : alert("That username is taken")
+                    json.id ? this.props.handleLogin(json) : this.props.addError("username") 
                 }) 
             }  
         }
