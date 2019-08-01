@@ -3,7 +3,7 @@ import { api } from './services/api';
 import './App.css';
 import Welcome from './containers/Welcome';
 import Home from './containers/Home';
-import {Button, Modal} from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
 
 
 class App extends Component {
@@ -49,6 +49,8 @@ class App extends Component {
   likeSong = (song) => {
     if (this.compareSongs(song)) {
       api.songs.likeSong(song, this.state.user).then(json => this.setState({ songs: [...this.state.songs, song] }))
+    } else {
+      this.addError(song)
     }
   }
 
@@ -69,27 +71,26 @@ class App extends Component {
       :this.setState({
         error: `You have already liked this song.`
       })
+    
     this.handleShow()
   }
 
   render() {
     return (
       <Fragment>
-        <Modal show={this.state.show} animation={false} onHide={this.handleClose} className="error-modal">
+        <Modal
+          show={this.state.show}
+          animation={false}
+          onHide={this.handleClose}
+          className="error-modal"
+          centered
+          backdrop={false}
+        >
           <Modal.Header closeButton>
             <Modal.Title>Error!!!!</Modal.Title>
           </Modal.Header>
           <Modal.Body>{this.state.error}</Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleClose}>
-              Close
-            </Button>
-          </Modal.Footer>
         </Modal>
-
-
-
-
         {localStorage.getItem('user_id') ?
           <Home
             user={this.state.user}

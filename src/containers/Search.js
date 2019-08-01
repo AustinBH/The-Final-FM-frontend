@@ -69,7 +69,7 @@ class Search extends Component {
             <Fragment>
                 <div className='row'>
                     <div className="col-sm-8 search-label">
-                        <h1>Song Search</h1>
+                        <h1>Song Searches</h1>
                     </div>
                     <div className="col-sm-4 search-label">
                         <h1>Event Search</h1>
@@ -85,8 +85,6 @@ class Search extends Component {
                             value={this.state.title}
                         />
                         <SearchData data={this.state.filteredSongs} likeButton={this.displayLikeSongButton}/>
-
-
                     </div>
                     <div className="col-sm-4">
                         <SearchForm

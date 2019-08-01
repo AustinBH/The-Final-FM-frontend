@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { api } from '../services/api';
 import AuthForm from '../components/AuthForm';
+import { Container, Row, Col, Jumbotron } from 'react-bootstrap';
 
 class Welcome extends Component {
 
@@ -38,39 +39,32 @@ class Welcome extends Component {
  
     render() {
         return (
-            <div className="container">
-                <div className='jumbotron' id="jumbotron-color">
+            <Container>
+                <Jumbotron id="jumbotron-color">
                     <h1>The Final FM</h1>
-                    <hr className="my-4" />
-                    </div>
-                    <div className="row">
-                        <div className="col-sm-4">
+                    <hr/>
+                </Jumbotron>
+                <Row>
+                    <Col>
                         <AuthForm 
-                    type='signup'
-                    handleOnSubmit={this.handleSubmit}
-                    handleOnChange={this.handleChange}
-                    value={this.state.signup}
-                    />
-
-                        </div>
-                        <div className="col-sm-4">
+                            type='signup'
+                            handleOnSubmit={this.handleSubmit}
+                            handleOnChange={this.handleChange}
+                            value={this.state.signup}
+                        />
+                    </Col>
+                    <Col>
                         <AuthForm
-                        type='login'
-                        handleOnSubmit={this.handleSubmit}
-                        handleOnChange={this.handleChange}
-                        value={this.state.login}
-                    />
-
-                        </div>
-                    </div>
-
-
-
-            </div>
+                            type='login'
+                            handleOnSubmit={this.handleSubmit}
+                            handleOnChange={this.handleChange}
+                            value={this.state.login}
+                        />
+                    </Col>
+                </Row>
+            </Container>
         )
-
     }
-
 }
 
 export default Welcome
