@@ -16,7 +16,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Configuring The App
 
 **API keys needed**
+
 You will need two API keys to get this project working to see the [backend database](https://github.com/AustinBH/The-Final-FM-backend)
+
 TicketMaster: free
 Last FM: Free
 
