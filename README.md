@@ -36,3 +36,5 @@ You will also see any lint errors in the console.
 
 
 
+##Contributors
+* Both the front and backends of this project were built by [Austin Harlow](https://github.com/AustinBH) and [DaNeil Coulthard](https://github.com/caffiendkitten).
