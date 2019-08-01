@@ -19,19 +19,20 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 You will need two API keys to get this project working to see the [backend database](https://github.com/AustinBH/The-Final-FM-backend)
 
-TicketMaster: free
-Last FM: Free
+*TicketMaster: free<br>
+*Last FM: Free
 
-Once the git repository is forked and cloned, in the project directory, you can run:
-
+Once the git repository is forked and cloned, in the project directory, you can run:<br>
 **`npm install`**
-At this point you will want to make sure that the [backend API](https://github.com/AustinBH/The-Final-FM-backend) is also configured and running.
-Once the npm is installed run:
 
+At this point you will want to make sure that the [backend API](https://github.com/AustinBH/The-Final-FM-backend) is also configured and running.
+
+Once the npm is installed run:<br>
 **`npm start`**
 
 Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+However, if you are running the backend API at the same time you will need to open [http://localhost:3001](http://localhost:3001) to view it in the browser, or specify a specific port for the json server to run on and the app to run on.<br>
+**They cannot run on the same port**
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
