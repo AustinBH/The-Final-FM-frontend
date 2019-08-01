@@ -1,8 +1,15 @@
+## The Final FM
+
+The Final FM is a song like application that allows a user to login or create an account. From here a user will be able to:
+- search for randon songs
+- create a list of liked songs
+- add a random song or searched for song to their list of liked songs
+- delete songs from the individual users list of liked songs
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
 In the project directory, you can run:
+
+###  Install
 
 ### `npm start`
 
