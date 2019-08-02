@@ -9,7 +9,7 @@ The Final FM is a song likeing application that allows a user to login or create
 - delete songs from the individual users list of liked songs
 - search for an artist's songs
 - search a city to see concerts playing there.
- - view the TickerMaster information for a concert
+- view the TickerMaster information for a concert
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
