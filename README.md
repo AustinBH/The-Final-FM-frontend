@@ -29,9 +29,7 @@ You will need two API keys to get this project working to see the [backend datab
 Once the git repository is forked and cloned, in the project directory, you can run:<br>
 **`npm install`**
 
-At this point you will want to make sure that the [backend API](https://github.com/AustinBH/The-Final-FM-backend) is also configured and running.
-
-Once the npm is installed run:<br>
+Once the npm packages are installed run:<br>
 
 **`npm start`**
 
