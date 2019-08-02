@@ -38,10 +38,9 @@ class Welcome extends Component {
                             this.props.handleLogin(user),
                             window.history.pushState('/login', 'home', '/')
                         )
-                    } else {
-                        this.props.addError('login')
                     }
                 }
+                this.props.addError('login')
             })
         } 
     }
