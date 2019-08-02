@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Jumbotron } from 'react-bootstrap';
 import { api } from '../services/api';
 import AuthForm from '../components/AuthForm';
+import logo from '../logo.svg'
 
 class Welcome extends Component {
 
     state = {
         signup: '',
-        login: ''
+        login: '',
+        isLoading: false
     }
 
     handleChange = ev => {
@@ -16,10 +18,12 @@ class Welcome extends Component {
 
     handleSubmit = ev => {
         ev.preventDefault()
+        this.setState({isLoading: true})
         if (ev.target.name === 'signup-form') {
             if (this.state.signup) {
                 api.auth.signUp(this.state.signup).then(json => {
                     json.id ? this.props.handleLogin(json) : this.props.addError("username") 
+                    this.setState({isLoading: false})
                 }) 
             }  
         }
@@ -35,6 +39,7 @@ class Welcome extends Component {
                         this.props.addError('login')
                     }
                 }
+                this.setState({ isLoading: false })
             })
         } 
     }
@@ -63,6 +68,14 @@ class Welcome extends Component {
                             value={this.state.login}
                         />
                     </Col>
+                </Row>
+                <Row>
+                    {this.state.isLoading ? 
+                    <Col style={{textAlign: "center"}}>
+                        <p>Loading
+                            <img src={logo} className='App-logo' alt='loading-logo' />
+                        </p>
+                    </Col> : null}
                 </Row>
             </Container>
         )
