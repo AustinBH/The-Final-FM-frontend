@@ -13,6 +13,8 @@ The Final FM is a song likeing application that allows a user to login or create
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+It can also be accessed on Heroku at https://the-final-fm.herokuapp.com/
+
 ## Configuring The App
 
 **API keys needed**
