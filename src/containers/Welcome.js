@@ -5,6 +5,7 @@ import AuthForm from '../components/AuthForm';
 import logo from '../logo.svg'
 
 class Welcome extends Component {
+    _isMounted = false;
 
     state = {
         signup: '',
@@ -18,7 +19,9 @@ class Welcome extends Component {
 
     handleSubmit = ev => {
         ev.preventDefault()
-        this.setState({isLoading: true})
+        if (this._isMounted) {
+            this.setState({isLoading: true})
+        }
         if (ev.target.name === 'signup-form') {
             if (this.state.signup) {
                 api.auth.signUp(this.state.signup).then(json => {
@@ -39,9 +42,12 @@ class Welcome extends Component {
                         this.props.addError('login')
                     }
                 }
-                this.setState({ isLoading: false })
             })
         } 
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false
     }
  
     render() {
