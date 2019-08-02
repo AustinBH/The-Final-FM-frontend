@@ -1,6 +1,6 @@
 # The Final FM
 
-![](https://media.giphy.com/media/3lxD1O74siiz5FvrJs/giphy.gif)
+![](https://media.giphy.com/media/10YpWPBU7GAYwM/giphy.gif)
 
 The Final FM is a song likeing application that allows a user to login or create an account. From here a user will be able to:
 - search for randon songs
@@ -13,7 +13,11 @@ The Final FM is a song likeing application that allows a user to login or create
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+It can also be accessed on Heroku at https://the-final-fm.herokuapp.com/
+
 ## Configuring The App
+
+![](https://media.giphy.com/media/vVzH2XY3Y0Ar6/giphy.gif)
 
 **API keys needed**
 
