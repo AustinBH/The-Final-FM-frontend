@@ -23,13 +23,6 @@ class Home extends Component {
             <Container>
                 <Router>
                     <Jumbotron id="jumbotron-color">
-                        <div className='home'>
-                            <RandomSong
-                                randomSong={this.state.randomSong}
-                                handleOnClick={this.displayRandomSongs}
-                                likeSong={this.props.likeSong}
-                            />
-                        </div>
                         <h1>The Final FM</h1>
                         <hr/>
                         <Navbar bg="dark" variant="dark">
@@ -59,7 +52,13 @@ class Home extends Component {
                                 >Logout</NavLink>
                             </Nav>
                         </Navbar>
-                        
+                        <div className='home'>
+                            <RandomSong
+                                randomSong={this.state.randomSong}
+                                handleOnClick={this.displayRandomSongs}
+                                likeSong={this.props.likeSong}
+                            />
+                        </div>
                     </Jumbotron>
                     <Route path ="/" exact render={props => <HomePage {...props} user={this.props.user}/>} ></Route>
                     <Route path="/search" exact render={props => <Search {...props} songs={this.props.allSongs} likeSong={this.props.likeSong} />} />
