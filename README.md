@@ -23,7 +23,7 @@ It can also be accessed on Heroku at https://the-final-fm.herokuapp.com/
 
 You will need two API keys to get this project working to see the [backend database](https://github.com/AustinBH/The-Final-FM-backend)
 
-*TicketMaster: free<br>
+*TicketMaster: Free<br>
 *Last FM: Free
 
 Once the git repository is forked and cloned, in the project directory, you can run:<br>
