@@ -15,7 +15,10 @@ class App extends Component {
     show: false
   }
 
-  handleClose = () => this.setState({show: false});
+  handleClose = () => {
+    this.setState({ show: false })
+    this.setState({ error: '' })
+  }
   handleShow = () => this.setState({show: true});
 
   componentDidMount() {
