@@ -75,7 +75,7 @@ class Welcome extends Component {
                         <p>Loading
                             <img src={logo} className='App-logo' alt='loading-logo' />
                         </p>
-                    </Col> : null}
+                    </Col>: null}
                 </Row>
             </Container>
         )
