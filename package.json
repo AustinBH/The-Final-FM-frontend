@@ -1,7 +1,6 @@
 {
   "name": "the-final-fm-frontend",
   "version": "0.1.0",
-  "homepage": "https://austinbh.github.io/The-Final-FM-frontend/",
   "private": true,
   "dependencies": {
     "bootstrap": "^3.4.1",
