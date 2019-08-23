@@ -2,7 +2,7 @@
 
 ![](https://media.giphy.com/media/10YpWPBU7GAYwM/giphy.gif)
 
-The Final FM is a song likeing application that allows a user to login or create an account. From here a user will be able to:
+The Final FM is a song liking application that allows a user to login or create an account. From here a user will be able to:
 - search for randon songs
 - create a list of liked songs
 - add a random song or searched for song to their list of liked songs
